@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using DVLD_Presentation.Global_Classes;
+using System.IO;
 
 namespace DVLD_Presentation
 {
@@ -76,8 +77,8 @@ namespace DVLD_Presentation
             txtEmail.Text = "";
             cbCountry.SelectedItem = "Egypt";
             txtAddress.Text = "";
-            pbImage.ImageLocation = null;
 
+            pbImage.ImageLocation = null;
             llRemoveImage.Visible = false;
 
         }
@@ -108,13 +109,8 @@ namespace DVLD_Presentation
             cbCountry.SelectedItem = _Person.CountryInfo.CountryName;
             txtAddress.Text = _Person.Address;
 
-            if (!string.IsNullOrWhiteSpace(_Person.ImagePath))
-            {
-                pbImage.ImageLocation = _Person.ImagePath;
-                llRemoveImage.Visible = true;
-            }
+            _LoadPersonImage();
 
-            _ChangeDefaultImage();
             if (_Person.Gender == (short)enGender.Male) rbMale.Checked = true;
             else rbFemale.Checked = true;
 
@@ -130,15 +126,21 @@ namespace DVLD_Presentation
             }
         }
 
-        private void _ChangeDefaultImage()
+        private void _LoadPersonImage()
         {
-            if (pbImage.ImageLocation == null)
+            if (!string.IsNullOrWhiteSpace(_Person?.ImagePath) && File.Exists(_Person.ImagePath))
             {
-                pbImage.Image = rbMale.Checked ?
-                    Properties.Resources.Male_512 :
-                    Properties.Resources.Female_512;
-                llRemoveImage.Visible = false;
-            }   
+                pbImage.ImageLocation = _Person.ImagePath;
+                llRemoveImage.Visible = true;
+                return;
+            }
+
+            pbImage.ImageLocation = null;
+            pbImage.Image = rbMale.Checked?
+                Properties.Resources.Male_512: 
+                Properties.Resources.Female_512;
+
+            llRemoveImage.Visible = false;
         }
 
         private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -156,24 +158,21 @@ namespace DVLD_Presentation
                 llRemoveImage.Visible = true;
             }
         }
-
         private void llRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            pbImage.ImageLocation = null;
+            _Person.ImagePath = "";
+            _LoadPersonImage();
             _ImageChanged = true;
-            _ChangeDefaultImage();
-        }
-
-        private void rbFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            _ChangeDefaultImage();
         }
 
         private void rbMale_CheckedChanged(object sender, EventArgs e)
         {
-            _ChangeDefaultImage();
+            _LoadPersonImage();
         }
-
+        private void rbFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            _LoadPersonImage();
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -231,12 +230,10 @@ namespace DVLD_Presentation
             }
 
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
 
         private bool _ValidateRequired(Control control, CancelEventArgs e)
         {
@@ -250,12 +247,10 @@ namespace DVLD_Presentation
             return true;
         }
 
-
         private void RequiredField_Validating(object sender, CancelEventArgs e)
         {
             _ValidateRequired((Control)sender, e);
         }
-
         private void txtEmail_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text.Trim()))
@@ -272,7 +267,6 @@ namespace DVLD_Presentation
             else errorProvider1.SetError(txtEmail, "");
 
         }
-
         private void txtNationalNo_Validating(object sender, CancelEventArgs e)
         {
             if (!_ValidateRequired(txtNationalNo, e)) return;
@@ -285,7 +279,6 @@ namespace DVLD_Presentation
             else errorProvider1.SetError(txtNationalNo, "");
 
         }
-
 
     }
 

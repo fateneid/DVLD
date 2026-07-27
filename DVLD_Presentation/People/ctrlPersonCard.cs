@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,16 @@ namespace DVLD_Presentation.People
         private int _PersonID = -1;
         private clsPerson _Person;
 
+        public int PersonID
+        {
+            get { return _PersonID; }
+        }
+
+        public clsPerson SelectedPerson
+        {
+            get { return _Person; }
+        }
+
         public ctrlPersonCard()
         {
             InitializeComponent();
@@ -24,15 +35,16 @@ namespace DVLD_Presentation.People
 
         private void _LoadPersonImage()
         {
-            if (!string.IsNullOrWhiteSpace(_Person.ImagePath))
+            if (!string.IsNullOrWhiteSpace(_Person.ImagePath) && File.Exists(_Person.ImagePath))
             {
                 pbImage.ImageLocation = _Person.ImagePath;
+                return;
             }
-            else
-            {
-                if (_Person.Gender == 0) pbImage.Image = Properties.Resources.Male_512;
-                else pbImage.Image = Properties.Resources.Female_512;
-            }
+
+            pbImage.Image = _Person.Gender == 0? 
+            Properties.Resources.Male_512:
+            Properties.Resources.Female_512;
+           
         }
 
         private void _FillPersonInfo()
@@ -42,6 +54,7 @@ namespace DVLD_Presentation.People
             lblPersonID.Text = _Person.PersonID.ToString();
             lblFullName.Text = _Person.FullName;
             lblNationalNo.Text = _Person.NationalNo;
+
             if (_Person.Gender == 0)
             {
                 lblGender.Text = "Male";

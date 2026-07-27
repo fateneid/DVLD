@@ -10,15 +10,15 @@ namespace DVLD_Presentation
 {
     public partial class frmListPeople : Form
     {
-        DataView DataSource;
-        string CurrentFilter = "";
+        private DataView _DataSource;
+        private string _CurrentFilter = "";
 
         public frmListPeople()
         {
             InitializeComponent();
 
-            DataSource = clsPerson.GetAllPeople().DefaultView;
-            dgvAllPeople.DataSource = DataSource;
+            _DataSource = clsPerson.GetAllPeople().DefaultView;
+            dgvAllPeople.DataSource = _DataSource;
             _SetupGridColumns();
         }
 
@@ -30,15 +30,15 @@ namespace DVLD_Presentation
 
         private void _ReloadData()
         {
-            DataSource = clsPerson.GetAllPeople().DefaultView;
-            dgvAllPeople.DataSource = DataSource;
+            _DataSource = clsPerson.GetAllPeople().DefaultView;
+            dgvAllPeople.DataSource = _DataSource;
             _ApplyFilter();
         }
 
         private void _ApplyFilter()
         {
-            DataSource.RowFilter = CurrentFilter;
-            lblRecordsCount.Text = DataSource.Count.ToString();
+            _DataSource.RowFilter = _CurrentFilter;
+            lblRecordsCount.Text = _DataSource.Count.ToString();
         }
 
         private void _SetupGridColumns()
@@ -75,53 +75,50 @@ namespace DVLD_Presentation
 
         private void _ClearFilter() 
         {
-            CurrentFilter = "";
+            _CurrentFilter = "";
             txtSearch.Text = "";
             cbSearchGender.SelectedIndex = 0;
             _ApplyFilter();
+        }
+
+        private void _ShowPerson(int PersonID)
+        {
+            frmShowPersonInfo frm = new frmShowPersonInfo(PersonID);
+            frm.ShowDialog();
+            _ReloadData();
         }
 
         private void _DeletePerson(int PersonID) 
         {
             if (MessageBox.Show("Are you sure you want to delete Person [" + PersonID + "]?", "Confirm Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                if (clsPerson.DeletePerson(PersonID))
+                if (!clsPerson.DeletePerson(PersonID))
                 {
-                    MessageBox.Show("Person deleted Successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _ReloadData();
+                    MessageBox.Show("Person deletion failed because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                else MessageBox.Show("Person deletion failed because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show("Person deleted Successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ReloadData();
             }
         }
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbFilterBy.SelectedIndex == 0)
-            {
-                txtSearch.Visible = false;
-                cbSearchGender.Visible = false;
-            }
-            else if (cbFilterBy.SelectedIndex != 0 && cbFilterBy.SelectedIndex != 8)
-            {
-                txtSearch.Visible = true;
-                cbSearchGender.Visible = false;
-            }
-            else if (cbFilterBy.SelectedIndex == 8)
-            {
-                txtSearch.Visible = false;
-                cbSearchGender.Visible = true;
-            }
+            bool isNone = cbFilterBy.Text == "None";
+            bool isGender = cbFilterBy.Text == "Gender";
+
+            txtSearch.Visible = !isNone && !isGender;
+            cbSearchGender.Visible = isGender;
+
             _ClearFilter();
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cbFilterBy.SelectedIndex == 1)
+            if (cbFilterBy.Text == "Person ID")
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
+                e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
             }
         }
 
@@ -167,11 +164,11 @@ namespace DVLD_Presentation
 
             if (colName == "PersonID") 
             {
-                CurrentFilter = $"{colName} = {txtSearch.Text}";
+                _CurrentFilter = $"{colName} = {txtSearch.Text}";
             }
             else
             {
-                CurrentFilter = $"{colName} LIKE '{txtSearch.Text}%'";
+                _CurrentFilter = $"{colName} LIKE '{txtSearch.Text}%'";
             }
 
             _ApplyFilter();
@@ -186,7 +183,7 @@ namespace DVLD_Presentation
             }
             else
             {
-                CurrentFilter = $"GenderCaption = '{cbSearchGender.Text}'";
+                _CurrentFilter = $"GenderCaption = '{cbSearchGender.Text}'";
                 _ApplyFilter();
             }
         }
@@ -203,11 +200,14 @@ namespace DVLD_Presentation
             _ReloadData();
         }
 
+        private void dgvAllPeople_DoubleClick(object sender, EventArgs e)
+        {
+            _ShowPerson((int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value);
+        }
+
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmShowPersonInfo frm = new frmShowPersonInfo((int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value);
-            frm.ShowDialog();
-            _ReloadData();
+            _ShowPerson((int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value);
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,12 +231,12 @@ namespace DVLD_Presentation
 
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void phoneCallToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
     }

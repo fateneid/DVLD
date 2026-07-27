@@ -81,6 +81,7 @@
             this.dgvAllPeople.RowTemplate.Height = 28;
             this.dgvAllPeople.Size = new System.Drawing.Size(1506, 420);
             this.dgvAllPeople.TabIndex = 1;
+            this.dgvAllPeople.DoubleClick += new System.EventHandler(this.dgvAllPeople_DoubleClick);
             // 
             // contextMenuStrip1
             // 

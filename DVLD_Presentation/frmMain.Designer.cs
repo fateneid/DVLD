@@ -35,7 +35,9 @@
             this.driversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.msMainMenue.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // msMainMenue
@@ -54,7 +56,7 @@
             this.msMainMenue.Location = new System.Drawing.Point(0, 0);
             this.msMainMenue.Name = "msMainMenue";
             this.msMainMenue.Padding = new System.Windows.Forms.Padding(12, 6, 12, 6);
-            this.msMainMenue.Size = new System.Drawing.Size(1239, 66);
+            this.msMainMenue.Size = new System.Drawing.Size(1918, 66);
             this.msMainMenue.TabIndex = 1;
             this.msMainMenue.Text = "msMainMenue";
             // 
@@ -99,19 +101,30 @@
             this.accountSettingsToolStripMenuItem.Size = new System.Drawing.Size(297, 54);
             this.accountSettingsToolStripMenuItem.Text = "Account Settings";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 66);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1918, 978);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(222)))), ((int)(((byte)(206)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1239, 617);
+            this.ClientSize = new System.Drawing.Size(1918, 1044);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.msMainMenue);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.msMainMenue;
             this.MaximizeBox = false;
             this.Name = "frmMain";
@@ -120,6 +133,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.msMainMenue.ResumeLayout(false);
             this.msMainMenue.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,6 +147,7 @@
         private System.Windows.Forms.ToolStripMenuItem driversToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountSettingsToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
