@@ -10,18 +10,20 @@ namespace DVLD_Business
     public class clsImageHelper
     {
 
-        public static string SaveImage(string newImagePath, string imagesDirectory)
+        private static readonly string _ImagesDirectory = @"C:\DVLD_Images";
+
+        public static string SaveImage(string newImagePath)
         {
             if (string.IsNullOrEmpty(newImagePath)) return "";
 
             try
             {
-                if (!Directory.Exists(imagesDirectory))
-                    Directory.CreateDirectory(imagesDirectory);
+                if (!Directory.Exists(_ImagesDirectory))
+                    Directory.CreateDirectory(_ImagesDirectory);
 
                 string extension = Path.GetExtension(newImagePath);
                 string newFileName = Guid.NewGuid() + extension;
-                string destinationPath = Path.Combine(imagesDirectory, newFileName);
+                string destinationPath = Path.Combine(_ImagesDirectory, newFileName);
 
                 File.Copy(newImagePath, destinationPath);
 

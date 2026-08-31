@@ -15,7 +15,7 @@ namespace DVLD_Business
         public string UserName { set; get; }
         public string Password { set; get; }
         public bool IsActive { set; get; }
-
+        public clsPerson Person;
 
         public clsUser()
         {
@@ -23,11 +23,10 @@ namespace DVLD_Business
             this.PersonID = -1;
             this.UserName = "";
             this.Password = "";
-            this.IsActive = false;
+            this.IsActive = true;
 
             Mode = enMode.AddNew;
         }
-
         private clsUser(int UserID, int PersonID, string UserName, string Password, bool IsActive)
         {
             this.UserID = UserID;
@@ -36,9 +35,10 @@ namespace DVLD_Business
             this.Password = Password;
             this.IsActive = IsActive;
 
+            this.Person = clsPerson.Find(PersonID);
+
             Mode = enMode.Update;
         }
-
 
         public static clsUser Find(int UserID)
         {
@@ -51,6 +51,16 @@ namespace DVLD_Business
             else 
                 return null;
         }
+        public static clsUser FindByUsernameAndPassword(string UserName, string Password)
+        {
+            int UserID = -1, PersonID = -1;
+            bool IsActive = false;
+
+            if (clsUserData.GetUserByUsernameAndPassword(ref UserID, ref PersonID, UserName, Password, ref IsActive))
+                return new clsUser(UserID, PersonID, UserName, Password, IsActive);
+            else
+                return null;
+        }
 
         private bool _AddNewUser()
         {
@@ -58,10 +68,16 @@ namespace DVLD_Business
 
             return (UserID != -1);
         }
-
         private bool _UpdateUser()
         {
             return clsUserData.UpdateUser(this.UserID, this.PersonID, this.UserName, this.Password, this.IsActive);
+        }
+        public bool ChangePassword(string NewPassword)
+        {
+            if(!clsUserData.ChangePassword(this.UserID, Password)) return false;
+
+            this.Password = NewPassword;
+            return true;
         }
 
         public bool Save()
@@ -84,7 +100,6 @@ namespace DVLD_Business
 
             return false;
         }
-
         public static bool DeleteUser(int UserID)
         {
             return clsUserData.DeleteUser(UserID);
@@ -99,15 +114,13 @@ namespace DVLD_Business
         {
             return clsUserData.IsUserExist(UserID);
         }
-
-        public static bool IsUserNameAndPasswordValid(string UserName, string Password)
+        public static bool IsUserExist(string UserName)
         {
-            return clsUserData.IsUserNameAndPasswordValid(UserName, Password);
+            return clsUserData.IsUserExist(UserName);
         }
-
-        public static bool IsUserActive(string UserName)
+        public static bool IsUserExistByPersonID(int PersonID)
         {
-            return clsUserData.IsUserActive(UserName);
+            return clsUserData.IsUserExistByPersonID(PersonID);
         }
 
     }

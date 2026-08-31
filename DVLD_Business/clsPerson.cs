@@ -36,7 +36,6 @@ namespace DVLD_Business
 
         public clsCountry CountryInfo;
 
-
         public clsPerson()
         {
 
@@ -57,7 +56,6 @@ namespace DVLD_Business
             Mode = enMode.AddNew;
 
         }
-
         private clsPerson(int PersonID, int NationalityCountryID, string NationalNo,
             string FirstName, string SecondName, string ThirdName, string LastName,
             short Gender, string Address, string Email, string Phone,
@@ -83,7 +81,6 @@ namespace DVLD_Business
 
         }
 
-
         public static clsPerson Find(int PersonID)
         {
             int NationalityCountryID = -1;
@@ -102,7 +99,6 @@ namespace DVLD_Business
             else 
                 return null;
         }
-
         public static clsPerson Find(string NationalNo)
         {
             int PersonID = -1, NationalityCountryID = -1;
@@ -131,7 +127,6 @@ namespace DVLD_Business
 
             return (PersonID != -1);
         }
-
         private bool _UpdatePerson()
         {
             return clsPersonData.UpdatePerson(this.PersonID, this.NationalityCountryID, this.NationalNo,
@@ -159,7 +154,6 @@ namespace DVLD_Business
 
             return false;
         }
-
         public static bool DeletePerson(int PersonID)
         {
             clsPerson Person = Find(PersonID);
@@ -181,7 +175,6 @@ namespace DVLD_Business
         {
             return clsPersonData.IsPersonExist(PersonID);
         }
-
         public static bool IsPersonExist(string NationalNo)
         {
             return clsPersonData.IsPersonExist(NationalNo);

@@ -13,28 +13,29 @@ using static System.Net.Mime.MediaTypeNames;
 using DVLD_Presentation.Global_Classes;
 using System.IO;
 
-namespace DVLD_Presentation
+namespace DVLD_Presentation.People
 {
-    public partial class frmAddEdit : Form
+    public partial class frmAddUpdatePerson : Form
     {
+
+        public delegate void DataBackEventHandler(int PersonID);
+        public event DataBackEventHandler DataBack;
+
         public enum enMode { AddNew = 0, Update = 1 };
         public enum enGender { Male = 0, Female = 1 };
 
         private enMode _Mode;
+        private int _PersonID;
+        private clsPerson _Person;
         private bool _ImageChanged = false;
-        private readonly string _ImagesDirectory = @"C:\DVLD_Images";
 
-        int _PersonID;
-        clsPerson _Person;
-
-        public frmAddEdit()
+        public frmAddUpdatePerson()
         {
             InitializeComponent();
 
             _Mode = enMode.AddNew;
         }
-
-        public frmAddEdit(int PersonID)
+        public frmAddUpdatePerson(int PersonID)
         {
             InitializeComponent();
 
@@ -64,6 +65,7 @@ namespace DVLD_Presentation
             _Person = new clsPerson();
 
             lblModeCaption.Text = "Add New Person";
+            this.Text = "Add New Person";
             lblPersonID.Text = "N/A";
 
             txtFirstName.Text = "";
@@ -82,7 +84,6 @@ namespace DVLD_Presentation
             llRemoveImage.Visible = false;
 
         }
-
         private void _Update()
         {
 
@@ -174,70 +175,9 @@ namespace DVLD_Presentation
             _LoadPersonImage();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (!this.ValidateChildren())
-            {
-                MessageBox.Show("Some fields are not valid!, put the mouse over the red icon(s) to see the error(s)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string oldImagePath = _Person.ImagePath;
-            string newImagePath = pbImage.ImageLocation;
-
-            _Person.FirstName = txtFirstName.Text.Trim();
-            _Person.SecondName = txtSecondName.Text.Trim();
-            _Person.ThirdName = txtThirdName.Text.Trim();
-            _Person.LastName = txtLastName.Text.Trim();
-            _Person.NationalNo = txtNationalNo.Text.Trim();
-            _Person.DateOfBirth = dtDateOfBirth.Value;
-            _Person.Phone = txtPhone.Text.Trim();
-            _Person.Email = txtEmail.Text.Trim();
-            _Person.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID;
-            _Person.Address = txtAddress.Text.Trim();
-
-            if (_ImageChanged)
-            {
-                _Person.ImagePath = clsImageHelper.SaveImage(newImagePath, _ImagesDirectory);
-
-                if (string.IsNullOrEmpty(_Person.ImagePath))
-                {
-                    MessageBox.Show("Unable to save image.");
-                    return;
-                }
-            }
-            else
-            { 
-                _Person.ImagePath = oldImagePath; 
-            }
-
-            _Person.Gender = (short)(rbMale.Checked ? enGender.Male : enGender.Female);
-
-            if (_Person.Save())
-            {
-                if (_ImageChanged) clsImageHelper.DeleteImage(oldImagePath);
-                _ImageChanged = false;
-
-                MessageBox.Show("Data Saved Successfully.");
-                _Mode = enMode.Update;
-                lblModeCaption.Text = "Update Person";
-                lblPersonID.Text = _Person.PersonID.ToString();
-            }
-            else
-            {
-                if (_ImageChanged) clsImageHelper.DeleteImage(_Person.ImagePath);
-                MessageBox.Show("Error: Data Is not Saved Successfully.");
-            }
-
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private bool _ValidateRequired(Control control, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(control.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(control.Text))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(control, "This field is required!");
@@ -253,7 +193,7 @@ namespace DVLD_Presentation
         }
         private void txtEmail_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 errorProvider1.SetError(txtEmail, "");
                 return;
@@ -278,6 +218,70 @@ namespace DVLD_Presentation
             }
             else errorProvider1.SetError(txtNationalNo, "");
 
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!this.ValidateChildren())
+            {
+                MessageBox.Show("Some fields are not valid!, put the mouse over the red icon(s) to see the error(s)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string oldImagePath = _Person.ImagePath;
+            string newImagePath = pbImage.ImageLocation;
+
+            _Person.FirstName = txtFirstName.Text.Trim();
+            _Person.SecondName = txtSecondName.Text.Trim();
+            _Person.ThirdName = txtThirdName.Text.Trim();
+            _Person.LastName = txtLastName.Text.Trim();
+            _Person.NationalNo = txtNationalNo.Text.Trim();
+            _Person.DateOfBirth = dtDateOfBirth.Value;
+            _Person.Phone = txtPhone.Text.Trim();
+            _Person.Email = txtEmail.Text.Trim();
+            _Person.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID;
+            _Person.Address = txtAddress.Text.Trim();
+
+            if (_ImageChanged)
+            {
+                _Person.ImagePath = clsImageHelper.SaveImage(newImagePath);
+
+                if (string.IsNullOrEmpty(_Person.ImagePath))
+                {
+                    MessageBox.Show("Unable to save image.");
+                    return;
+                }
+            }
+            else
+            {
+                _Person.ImagePath = oldImagePath;
+            }
+
+            _Person.Gender = (short)(rbMale.Checked ? enGender.Male : enGender.Female);
+
+            if (_Person.Save())
+            {
+                if (_ImageChanged) clsImageHelper.DeleteImage(oldImagePath);
+                _ImageChanged = false;
+
+                lblPersonID.Text = _Person.PersonID.ToString();
+                _Mode = enMode.Update;
+                lblModeCaption.Text = "Update Person";
+                this.Text = "Update Person";
+                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                DataBack?.Invoke(_Person.PersonID);
+            }
+            else
+            {
+                if (_ImageChanged) clsImageHelper.DeleteImage(_Person.ImagePath);
+                MessageBox.Show("Error: Data Is not Saved Successfully.");
+            }
+
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

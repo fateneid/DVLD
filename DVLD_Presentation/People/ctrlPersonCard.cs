@@ -16,13 +16,11 @@ namespace DVLD_Presentation.People
     {
 
         private int _PersonID = -1;
-        private clsPerson _Person;
-
         public int PersonID
         {
             get { return _PersonID; }
         }
-
+        private clsPerson _Person;
         public clsPerson SelectedPerson
         {
             get { return _Person; }
@@ -78,7 +76,7 @@ namespace DVLD_Presentation.People
 
         }
 
-        private void _ResetPersonInfo()
+        public void ResetPersonInfo()
         {
             _PersonID = -1;
 
@@ -104,7 +102,7 @@ namespace DVLD_Presentation.People
             _Person = clsPerson.Find(PersonID);
             if (_Person == null)
             {
-                _ResetPersonInfo();
+                ResetPersonInfo();
                 MessageBox.Show("No Person with Person ID = " + PersonID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -119,7 +117,7 @@ namespace DVLD_Presentation.People
             _Person = clsPerson.Find(NationalNo);
             if (_Person == null)
             {
-                _ResetPersonInfo();
+                ResetPersonInfo();
                 MessageBox.Show("No Person with National No. = " + NationalNo, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -130,13 +128,12 @@ namespace DVLD_Presentation.People
 
         private void llEditPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmAddEdit frm = new frmAddEdit(_PersonID);
+            frmAddUpdatePerson frm = new frmAddUpdatePerson(_PersonID);
             frm.ShowDialog();
 
             LoadPersonInfo(_PersonID);
 
         }
-
 
     }
 

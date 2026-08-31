@@ -10,7 +10,6 @@ namespace DVLD_Business
         public int CountryID { set; get; }
         public string CountryName { set; get; }
 
-
         private clsCountry(int CountryID, string CountryName)
         {
             this.CountryID = CountryID;
@@ -26,7 +25,6 @@ namespace DVLD_Business
             else
                 return null;
         }
-
         public static clsCountry Find(string CountryName)
         {
             int CountryID = -1;

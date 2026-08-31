@@ -360,7 +360,6 @@ namespace DVLD_DataAccess
             return isFound;
 
         }
-
         public static bool IsPersonExist(string NationalNo)
         {
             bool isFound = false;

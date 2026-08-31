@@ -19,7 +19,22 @@ namespace DVLD_Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+
+            while (true) 
+            {
+
+                frmLogin login = new frmLogin();
+
+                if (login.ShowDialog() != DialogResult.OK)
+                    break;
+
+                frmMain main = new frmMain();
+                Application.Run(main);
+
+                if (!main.IsLoggedOut)
+                    break;
+            }
+
         }
 
     }

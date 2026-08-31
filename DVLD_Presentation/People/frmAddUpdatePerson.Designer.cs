@@ -1,6 +1,6 @@
-﻿namespace DVLD_Presentation
+﻿namespace DVLD_Presentation.People
 {
-    partial class frmAddEdit
+    partial class frmAddUpdatePerson
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEdit));
             this.lblPersonIDCaption = new System.Windows.Forms.Label();
             this.lblPersonID = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -94,7 +93,7 @@
             // 
             this.lblPersonIDCaption.AutoSize = true;
             this.lblPersonIDCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPersonIDCaption.Location = new System.Drawing.Point(27, 63);
+            this.lblPersonIDCaption.Location = new System.Drawing.Point(27, 64);
             this.lblPersonIDCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPersonIDCaption.Name = "lblPersonIDCaption";
             this.lblPersonIDCaption.Size = new System.Drawing.Size(114, 25);
@@ -105,7 +104,7 @@
             // 
             this.lblPersonID.AutoSize = true;
             this.lblPersonID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPersonID.Location = new System.Drawing.Point(243, 63);
+            this.lblPersonID.Location = new System.Drawing.Point(243, 64);
             this.lblPersonID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPersonID.Name = "lblPersonID";
             this.lblPersonID.Size = new System.Drawing.Size(49, 25);
@@ -114,11 +113,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(192, 57);
+            this.pictureBox1.Image = global::DVLD_Presentation.Properties.Resources.Number_32;
+            this.pictureBox1.Location = new System.Drawing.Point(192, 56);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 114;
             this.pictureBox1.TabStop = false;
@@ -127,7 +126,7 @@
             // 
             this.lblModeCaption.AutoSize = true;
             this.lblModeCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModeCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(113)))), ((int)(((byte)(79)))));
+            this.lblModeCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(44)))), ((int)(((byte)(106)))));
             this.lblModeCaption.Location = new System.Drawing.Point(501, 20);
             this.lblModeCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblModeCaption.Name = "lblModeCaption";
@@ -184,95 +183,97 @@
             this.groupBox1.Controls.Add(this.lblNationalNoCaption);
             this.groupBox1.Controls.Add(this.lblNameCaption);
             this.groupBox1.Location = new System.Drawing.Point(21, 94);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Size = new System.Drawing.Size(1298, 525);
             this.groupBox1.TabIndex = 116;
             this.groupBox1.TabStop = false;
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Image = global::DVLD_Presentation.Properties.Resources.Phone_32;
             this.pictureBox8.Location = new System.Drawing.Point(706, 180);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox8.Size = new System.Drawing.Size(36, 36);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox8.TabIndex = 158;
             this.pictureBox8.TabStop = false;
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Image = global::DVLD_Presentation.Properties.Resources.Email_32;
             this.pictureBox7.Location = new System.Drawing.Point(172, 242);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox7.Size = new System.Drawing.Size(36, 36);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 157;
             this.pictureBox7.TabStop = false;
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Image = global::DVLD_Presentation.Properties.Resources.Country_32;
             this.pictureBox6.Location = new System.Drawing.Point(706, 242);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox6.Size = new System.Drawing.Size(36, 36);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 156;
             this.pictureBox6.TabStop = false;
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Image = global::DVLD_Presentation.Properties.Resources.Number_32;
             this.pictureBox5.Location = new System.Drawing.Point(172, 118);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox5.Size = new System.Drawing.Size(36, 36);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 155;
             this.pictureBox5.TabStop = false;
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(172, 303);
+            this.pictureBox4.Image = global::DVLD_Presentation.Properties.Resources.Address_32;
+            this.pictureBox4.Location = new System.Drawing.Point(172, 304);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox4.Size = new System.Drawing.Size(36, 36);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 154;
             this.pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Image = global::DVLD_Presentation.Properties.Resources.Calendar_32;
             this.pictureBox3.Location = new System.Drawing.Point(706, 118);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox3.Size = new System.Drawing.Size(36, 36);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 153;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(172, 57);
+            this.pictureBox2.Image = global::DVLD_Presentation.Properties.Resources.Person_32;
+            this.pictureBox2.Location = new System.Drawing.Point(172, 56);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox2.Size = new System.Drawing.Size(36, 36);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 152;
             this.pictureBox2.TabStop = false;
             // 
             // pbFemale
             // 
-            this.pbFemale.Image = ((System.Drawing.Image)(resources.GetObject("pbFemale.Image")));
+            this.pbFemale.Image = global::DVLD_Presentation.Properties.Resources.Woman_32;
             this.pbFemale.Location = new System.Drawing.Point(316, 180);
             this.pbFemale.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFemale.Name = "pbFemale";
-            this.pbFemale.Size = new System.Drawing.Size(36, 37);
+            this.pbFemale.Size = new System.Drawing.Size(36, 36);
             this.pbFemale.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbFemale.TabIndex = 151;
             this.pbFemale.TabStop = false;
@@ -281,7 +282,7 @@
             // 
             this.rbFemale.AutoSize = true;
             this.rbFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbFemale.Location = new System.Drawing.Point(363, 183);
+            this.rbFemale.Location = new System.Drawing.Point(363, 184);
             this.rbFemale.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(102, 29);
@@ -293,11 +294,11 @@
             // 
             // pbMale
             // 
-            this.pbMale.Image = ((System.Drawing.Image)(resources.GetObject("pbMale.Image")));
+            this.pbMale.Image = global::DVLD_Presentation.Properties.Resources.Man_32;
             this.pbMale.Location = new System.Drawing.Point(172, 180);
             this.pbMale.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbMale.Name = "pbMale";
-            this.pbMale.Size = new System.Drawing.Size(36, 37);
+            this.pbMale.Size = new System.Drawing.Size(36, 36);
             this.pbMale.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbMale.TabIndex = 149;
             this.pbMale.TabStop = false;
@@ -306,7 +307,7 @@
             // 
             this.rbMale.AutoSize = true;
             this.rbMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMale.Location = new System.Drawing.Point(220, 183);
+            this.rbMale.Location = new System.Drawing.Point(220, 184);
             this.rbMale.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(80, 29);
@@ -330,14 +331,15 @@
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(222)))), ((int)(((byte)(206)))));
+            this.btnClose.BackColor = System.Drawing.Color.White;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(113)))), ((int)(((byte)(79)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Image = global::DVLD_Presentation.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(664, 449);
+            this.btnClose.Location = new System.Drawing.Point(680, 449);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(156, 52);
             this.btnClose.TabIndex = 146;
@@ -347,13 +349,13 @@
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(222)))), ((int)(((byte)(206)))));
-            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(113)))), ((int)(((byte)(79)))));
+            this.btnSave.BackColor = System.Drawing.Color.White;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Image = global::DVLD_Presentation.Properties.Resources.Save_32;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(849, 449);
+            this.btnSave.Location = new System.Drawing.Point(846, 449);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(156, 52);
@@ -430,7 +432,7 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(759, 183);
+            this.txtPhone.Location = new System.Drawing.Point(759, 184);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(244, 26);
@@ -449,6 +451,7 @@
             // 
             // pbImage
             // 
+            this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbImage.Location = new System.Drawing.Point(1029, 122);
             this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbImage.Name = "pbImage";
@@ -492,7 +495,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(219, 303);
+            this.txtAddress.Location = new System.Drawing.Point(219, 304);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(784, 126);
@@ -601,20 +604,20 @@
             // 
             this.lblNameCaption.AutoSize = true;
             this.lblNameCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameCaption.Location = new System.Drawing.Point(21, 63);
+            this.lblNameCaption.Location = new System.Drawing.Point(21, 64);
             this.lblNameCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNameCaption.Name = "lblNameCaption";
             this.lblNameCaption.Size = new System.Drawing.Size(75, 25);
             this.lblNameCaption.TabIndex = 121;
             this.lblNameCaption.Text = "Name:";
             // 
-            // frmAddEdit
+            // frmAddUpdatePerson
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(222)))), ((int)(((byte)(206)))));
+            this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1338, 638);
             this.Controls.Add(this.groupBox1);
@@ -623,9 +626,10 @@
             this.Controls.Add(this.lblPersonID);
             this.Controls.Add(this.lblPersonIDCaption);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmAddEdit";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "frmAddUpdatePerson";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add/Edit";
+            this.Text = "Add/Edit Person";
             this.Load += new System.EventHandler(this.frmAddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
