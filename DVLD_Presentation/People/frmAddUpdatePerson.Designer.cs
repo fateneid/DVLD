@@ -437,7 +437,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(244, 26);
             this.txtPhone.TabIndex = 138;
-            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.RequiredField_Validating);
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.requiredField_Validating);
             // 
             // dtDateOfBirth
             // 
@@ -501,7 +501,7 @@
             this.txtAddress.Size = new System.Drawing.Size(784, 126);
             this.txtAddress.TabIndex = 132;
             this.txtAddress.Text = "";
-            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.RequiredField_Validating);
+            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.requiredField_Validating);
             // 
             // txtEmail
             // 
@@ -528,7 +528,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(244, 26);
             this.txtLastName.TabIndex = 129;
-            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.RequiredField_Validating);
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.requiredField_Validating);
             // 
             // txtSecondName
             // 
@@ -537,7 +537,7 @@
             this.txtSecondName.Name = "txtSecondName";
             this.txtSecondName.Size = new System.Drawing.Size(244, 26);
             this.txtSecondName.TabIndex = 128;
-            this.txtSecondName.Validating += new System.ComponentModel.CancelEventHandler(this.RequiredField_Validating);
+            this.txtSecondName.Validating += new System.ComponentModel.CancelEventHandler(this.requiredField_Validating);
             // 
             // txtThirdName
             // 
@@ -554,7 +554,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(244, 26);
             this.txtFirstName.TabIndex = 126;
-            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.RequiredField_Validating);
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.requiredField_Validating);
             // 
             // lblAddressCaption
             // 

@@ -38,15 +38,15 @@ namespace DVLD_Presentation.Users
             
         }
 
-        private bool _ValidateRequired(Control control, CancelEventArgs e)
+        private bool _ValidateRequired(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(control.Text))
+            if (string.IsNullOrWhiteSpace(((TextBox)sender).Text))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(control, "This field is required!");
+                errorProvider1.SetError((TextBox)sender, "This field is required!");
                 return false;
             }
-            errorProvider1.SetError(control, "");
+            errorProvider1.SetError((TextBox)sender, "");
             return true;
         }
 

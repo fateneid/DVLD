@@ -28,7 +28,7 @@ namespace DVLD_Presentation.Users
         {
             dgvAllUsers.DataSource = _DataSource;
             _SetupGridColumns();
-
+            lblRecordsCount.Text = _DataSource.Count.ToString();
             cbFilterBy.SelectedIndex = 0;
         }
 
@@ -45,15 +45,15 @@ namespace DVLD_Presentation.Users
 
             dgvAllUsers.Columns["FullName"].HeaderText = "Full Name";
             dgvAllUsers.Columns["FullName"].DisplayIndex = 2;
-            dgvAllUsers.Columns["FullName"].Width = 400;
+            dgvAllUsers.Columns["FullName"].Width = 450;
 
             dgvAllUsers.Columns["UserName"].HeaderText = "UserName";
             dgvAllUsers.Columns["UserName"].DisplayIndex = 3;
-            dgvAllUsers.Columns["UserName"].Width = 200;
+            dgvAllUsers.Columns["UserName"].Width = 140;
 
             dgvAllUsers.Columns["IsActive"].HeaderText = "Is Active";
             dgvAllUsers.Columns["IsActive"].DisplayIndex = 4;
-            dgvAllUsers.Columns["IsActive"].Width = 120;
+            dgvAllUsers.Columns["IsActive"].Width = 90;
 
         }
 

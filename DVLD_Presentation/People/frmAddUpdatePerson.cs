@@ -187,7 +187,7 @@ namespace DVLD_Presentation.People
             return true;
         }
 
-        private void RequiredField_Validating(object sender, CancelEventArgs e)
+        private void requiredField_Validating(object sender, CancelEventArgs e)
         {
             _ValidateRequired((Control)sender, e);
         }

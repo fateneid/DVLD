@@ -125,7 +125,7 @@ namespace DVLD_Business
             this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.Gender,
             this.Address, this.Email, this.Phone, this.ImagePath, this.DateOfBirth);
 
-            return (PersonID != -1);
+            return (this.PersonID != -1);
         }
         private bool _UpdatePerson()
         {

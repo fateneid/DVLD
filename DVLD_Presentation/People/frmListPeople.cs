@@ -22,7 +22,7 @@ namespace DVLD_Presentation.People
         {
             dgvAllPeople.DataSource = _DataSource;
             _SetupGridColumns();
-
+            lblRecordsCount.Text = _DataSource.Count.ToString();
             cbFilterBy.SelectedIndex = 0;
         }
 

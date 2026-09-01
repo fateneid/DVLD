@@ -44,7 +44,7 @@ namespace DVLD_Business
         {
             int PersonID = -1;
             string UserName = "", Password = "";
-            bool IsActive = false;
+            bool IsActive = true;
 
             if (clsUserData.GetUserByID(UserID, ref PersonID, ref UserName, ref Password, ref IsActive))
                 return new clsUser(UserID, PersonID, UserName, Password, IsActive);
@@ -54,7 +54,7 @@ namespace DVLD_Business
         public static clsUser FindByUsernameAndPassword(string UserName, string Password)
         {
             int UserID = -1, PersonID = -1;
-            bool IsActive = false;
+            bool IsActive = true;
 
             if (clsUserData.GetUserByUsernameAndPassword(ref UserID, ref PersonID, UserName, Password, ref IsActive))
                 return new clsUser(UserID, PersonID, UserName, Password, IsActive);
@@ -66,7 +66,7 @@ namespace DVLD_Business
         {
             this.UserID = clsUserData.AddNewUser(this.PersonID, this.UserName, this.Password, this.IsActive);
 
-            return (UserID != -1);
+            return (this.UserID != -1);
         }
         private bool _UpdateUser()
         {

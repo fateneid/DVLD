@@ -10,17 +10,22 @@ namespace DVLD_Presentation.Global_Classes
     public class clsValidation
     {
 
-        public static bool ValidateEmail(string email)
+        public static bool ValidateEmail(string Email)
         {
             try
             {
-                return new MailAddress(email).Address == email;
+                return new MailAddress(Email).Address == Email;
             }
             catch
             {
                 return false;
             }
 
+        }
+
+        public static bool IsDecimal(string Value)
+        {
+            return decimal.TryParse(Value, out _);
         }
 
 
