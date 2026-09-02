@@ -129,9 +129,11 @@ namespace DVLD_Presentation.People
         private void llEditPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmAddUpdatePerson frm = new frmAddUpdatePerson(_PersonID);
-            frm.ShowDialog();
-
-            LoadPersonInfo(_PersonID);
+       
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadPersonInfo(_PersonID);
+            }
 
         }
 

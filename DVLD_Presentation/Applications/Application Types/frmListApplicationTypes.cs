@@ -53,8 +53,11 @@ namespace DVLD_Presentation.Applications.Application_Types
         private void editApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUpdateApplicationType frm = new frmUpdateApplicationType((int)dgvAllApplicationTypes.CurrentRow.Cells["ApplicationTypeID"].Value);
-            frm.ShowDialog();
-            _ReloadData();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _ReloadData();
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

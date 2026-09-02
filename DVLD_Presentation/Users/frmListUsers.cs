@@ -72,6 +72,7 @@ namespace DVLD_Presentation.Users
         private void _ShowUser(int UserID)
         {
             frmShowUserInfo frm = new frmShowUserInfo(UserID);
+
             frm.ShowDialog();
             _ReloadData();
         }
@@ -160,8 +161,11 @@ namespace DVLD_Presentation.Users
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             frmAddUpdateUser frm = new frmAddUpdateUser();
-            frm.ShowDialog();
-            _ReloadData();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _ReloadData();
+            }
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -179,14 +183,20 @@ namespace DVLD_Presentation.Users
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddUpdateUser frm = new frmAddUpdateUser();
-            frm.ShowDialog();
-            _ReloadData();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _ReloadData();
+            }
         }
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddUpdateUser frm = new frmAddUpdateUser((int)dgvAllUsers.CurrentRow.Cells["UserID"].Value);
-            frm.ShowDialog();
-            _ReloadData();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _ReloadData();
+            }
         }
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {

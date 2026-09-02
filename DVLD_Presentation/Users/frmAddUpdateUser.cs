@@ -181,6 +181,9 @@ namespace DVLD_Presentation.Users
                 lblModeCaption.Text = "Update User";
                 this.Text = "Update User";
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {

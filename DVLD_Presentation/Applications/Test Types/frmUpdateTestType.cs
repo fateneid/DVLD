@@ -10,35 +10,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DVLD_Presentation.Applications.Application_Types
+namespace DVLD_Presentation.Applications.Test_Types
 {
-    public partial class frmUpdateApplicationType : Form
+    public partial class frmUpdateTestType : Form
     {
 
-        private int _ApplicationTypeID;
-        private clsApplicationType _ApplicationType;
+        private clsTestType.enTestType _TestTypeID;
+        private clsTestType _TestType;
 
-        public frmUpdateApplicationType(int ApplicationTypeID)
+        public frmUpdateTestType(clsTestType.enTestType TestTypeID)
         {
             InitializeComponent();
 
-            _ApplicationTypeID = ApplicationTypeID;
+            _TestTypeID = TestTypeID;
         }
 
-        private void frmUpdateApplicationType_Load(object sender, EventArgs e)
+        private void frmUpdateTestType_Load(object sender, EventArgs e)
         {
-            _ApplicationType = clsApplicationType.Find(_ApplicationTypeID);
+            _TestType = clsTestType.Find(_TestTypeID);
 
-            if(_ApplicationType == null)
+            if (_TestType == null)
             {
-                MessageBox.Show("Application Type does not exist","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Test Type does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
 
-            lblApplicationTypeID.Text = _ApplicationTypeID.ToString();
-            txtApplicationTypeTitle.Text = _ApplicationType.ApplicationTypeTitle;
-            txtApplicationFees.Text = _ApplicationType.ApplicationFees.ToString();
+            lblTestTypeID.Text = ((int)_TestTypeID).ToString();
+            txtTestTypeTitle.Text = _TestType.TestTypeTitle;
+            rtxtTestTypeDescription.Text = _TestType.TestTypeDescription;
+            txtTestTypeFees.Text = _TestType.TestTypeFees.ToString();
 
         }
 
@@ -54,20 +55,20 @@ namespace DVLD_Presentation.Applications.Application_Types
             return true;
         }
 
-        private void txtApplicationTypeTitle_Validating(object sender, CancelEventArgs e)
+        private void txtTestTypeTitle_Validating(object sender, CancelEventArgs e)
         {
-            if (!_ValidateRequired(txtApplicationTypeTitle, e)) return;
+            if (!_ValidateRequired(txtTestTypeTitle, e)) return;
         }
-        private void txtApplicationFees_Validating(object sender, CancelEventArgs e)
+        private void txtTestTypeFees_Validating(object sender, CancelEventArgs e)
         {
-            if (!_ValidateRequired(txtApplicationFees, e)) return;
+            if (!_ValidateRequired(txtTestTypeFees, e)) return;
 
-            if (!clsValidation.IsDecimal(txtApplicationFees.Text.Trim()))
+            if (!clsValidation.IsDecimal(txtTestTypeFees.Text.Trim()))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(txtApplicationFees, "Fees format is wrong!");
+                errorProvider1.SetError(txtTestTypeFees, "Fees format is wrong!");
             }
-            else errorProvider1.SetError(txtApplicationFees, "");
+            else errorProvider1.SetError(txtTestTypeFees, "");
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -78,10 +79,11 @@ namespace DVLD_Presentation.Applications.Application_Types
                 return;
             }
 
-            _ApplicationType.ApplicationTypeTitle = txtApplicationTypeTitle.Text.Trim();
-            _ApplicationType.ApplicationFees = decimal.Parse(txtApplicationFees.Text.Trim());
+            _TestType.TestTypeTitle = txtTestTypeTitle.Text.Trim();
+            _TestType.TestTypeDescription = rtxtTestTypeDescription.Text.Trim();
+            _TestType.TestTypeFees = decimal.Parse(txtTestTypeFees.Text.Trim());
 
-            if (_ApplicationType.Save())
+            if (_TestType.Save())
             {
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -98,6 +100,7 @@ namespace DVLD_Presentation.Applications.Application_Types
         {
             this.Close();
         }
+
 
     }
 }

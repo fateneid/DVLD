@@ -271,6 +271,9 @@ namespace DVLD_Presentation.People
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 DataBack?.Invoke(_Person.PersonID);
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
