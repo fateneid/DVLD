@@ -20,7 +20,7 @@ namespace DVLD_Business
         {
             string CountryName = "";
 
-            if (clsCountryData.GetCountryByID(CountryID, ref CountryName))
+            if (clsCountryData.GetByID(CountryID, ref CountryName))
                 return new clsCountry(CountryID, CountryName);
             else
                 return null;
@@ -29,15 +29,15 @@ namespace DVLD_Business
         {
             int CountryID = -1;
 
-            if (clsCountryData.GetCountryByName(ref CountryID, CountryName))
+            if (clsCountryData.GetByName(ref CountryID, CountryName))
                 return new clsCountry(CountryID, CountryName);
             else
                 return null;
         }
 
-        public static DataTable GetAllCountries()
+        public static DataTable GetAll()
         {
-            return clsCountryData.GetAllCountries();
+            return clsCountryData.GetAll();
         }
 
 

@@ -35,21 +35,21 @@ namespace DVLD_Business
         {
             string ApplicationTypeTitle = "";
             decimal ApplicationFees = 0;
-            if (clsApplicationTypeData.GetApplicationTypeByID(ApplicationTypeID, ref ApplicationTypeTitle, ref ApplicationFees))
+            if (clsApplicationTypeData.GetByID(ApplicationTypeID, ref ApplicationTypeTitle, ref ApplicationFees))
                 return new clsApplicationType(ApplicationTypeID, ApplicationTypeTitle, ApplicationFees);
             else
                 return null;
         }
 
-        private bool _AddNewApplicationType()
+        private bool _AddNew()
         {
-            this.ApplicationTypeID = clsApplicationTypeData.AddNewApplicationType(this.ApplicationTypeTitle, this.ApplicationFees);
+            this.ApplicationTypeID = clsApplicationTypeData.AddNew(this.ApplicationTypeTitle, this.ApplicationFees);
 
             return (this.ApplicationTypeID != -1);
         }
-        private bool _UpdateApplicationType()
+        private bool _Update()
         {
-            return clsApplicationTypeData.UpdateApplicationType(this.ApplicationTypeID, this.ApplicationTypeTitle, this.ApplicationFees);
+            return clsApplicationTypeData.Update(this.ApplicationTypeID, this.ApplicationTypeTitle, this.ApplicationFees);
         }
 
         public bool Save()
@@ -57,7 +57,7 @@ namespace DVLD_Business
             switch (Mode)
             {
                 case enMode.AddNew:
-                    if (_AddNewApplicationType())
+                    if (_AddNew())
                     {
                         Mode = enMode.Update;
                         return true;
@@ -67,15 +67,15 @@ namespace DVLD_Business
                         return false;
                     }
                 case enMode.Update:
-                    return _UpdateApplicationType();
+                    return _Update();
             }
 
             return false;
         }
 
-        public static DataTable GetAllApplicationTypes() 
+        public static DataTable GetAll() 
         {
-            return clsApplicationTypeData.GetAllApplicationTypes();
+            return clsApplicationTypeData.GetAll();
         }
 
 

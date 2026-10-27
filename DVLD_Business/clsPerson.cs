@@ -33,6 +33,18 @@ namespace DVLD_Business
         public string Phone { set; get; }
         public string ImagePath { set; get; }
         public DateTime DateOfBirth { set; get; }
+        public int Age 
+        {
+            get
+            {
+                int age = DateTime.Today.Year - DateOfBirth.Year;
+
+                if (DateOfBirth.Date > DateTime.Today.AddYears(-age))
+                    age--;
+
+                return age;
+            }
+        }
 
         public clsCountry CountryInfo;
 
@@ -89,7 +101,7 @@ namespace DVLD_Business
             Address = "", Email = "", Phone = "", ImagePath = "";
             DateTime DateOfBirth = DateTime.Now;
 
-            if (clsPersonData.GetPersonByID(PersonID, ref NationalityCountryID, ref NationalNo,
+            if (clsPersonData.GetByID(PersonID, ref NationalityCountryID, ref NationalNo,
             ref FirstName, ref SecondName, ref ThirdName, ref LastName, ref Gender, ref Address, ref Email,
             ref Phone, ref ImagePath, ref DateOfBirth))
                 return new clsPerson(PersonID, NationalityCountryID, NationalNo,
@@ -107,7 +119,7 @@ namespace DVLD_Business
             Address = "", Email = "", Phone = "", ImagePath = "";
             DateTime DateOfBirth = DateTime.Now;
 
-            if (clsPersonData.GetPersonByNationalNo(ref PersonID, ref NationalityCountryID, NationalNo,
+            if (clsPersonData.GetByNationalNo(ref PersonID, ref NationalityCountryID, NationalNo,
             ref FirstName, ref SecondName, ref ThirdName, ref LastName, ref Gender, ref Address, ref Email,
             ref Phone, ref ImagePath, ref DateOfBirth))
 
@@ -119,17 +131,17 @@ namespace DVLD_Business
                 return null;
         }
 
-        private bool _AddNewPerson()
+        private bool _AddNew()
         {
-            this.PersonID = clsPersonData.AddNewPerson(this.NationalityCountryID, this.NationalNo,
+            this.PersonID = clsPersonData.AddNew(this.NationalityCountryID, this.NationalNo,
             this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.Gender,
             this.Address, this.Email, this.Phone, this.ImagePath, this.DateOfBirth);
 
             return (this.PersonID != -1);
         }
-        private bool _UpdatePerson()
+        private bool _Update()
         {
-            return clsPersonData.UpdatePerson(this.PersonID, this.NationalityCountryID, this.NationalNo,
+            return clsPersonData.Update(this.PersonID, this.NationalityCountryID, this.NationalNo,
             this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.Gender,
             this.Address, this.Email, this.Phone, this.ImagePath, this.DateOfBirth);
         }
@@ -139,7 +151,7 @@ namespace DVLD_Business
             switch (Mode)
             {
                 case enMode.AddNew:
-                    if(_AddNewPerson())
+                    if(_AddNew())
                     {
                         Mode = enMode.Update;
                         return true;
@@ -149,35 +161,35 @@ namespace DVLD_Business
                         return false;
                     }
                 case enMode.Update:
-                     return _UpdatePerson();             
+                     return _Update();             
             }
 
             return false;
         }
-        public static bool DeletePerson(int PersonID)
+        public static bool Delete(int PersonID)
         {
             clsPerson Person = Find(PersonID);
 
             if (Person == null) return false;
 
-            if (!clsPersonData.DeletePerson(PersonID)) return false;
+            if (!clsPersonData.Delete(PersonID)) return false;
 
             clsImageHelper.DeleteImage(Person.ImagePath);
             return true;
         }
 
-        public static DataTable GetAllPeople()
+        public static DataTable GetAll()
         {
-            return clsPersonData.GetAllPeople();
+            return clsPersonData.GetAll();
         }
 
-        public static bool IsPersonExist(int PersonID)
+        public static bool IsExist(int PersonID)
         {
-            return clsPersonData.IsPersonExist(PersonID);
+            return clsPersonData.IsExist(PersonID);
         }
-        public static bool IsPersonExist(string NationalNo)
+        public static bool IsExist(string NationalNo)
         {
-            return clsPersonData.IsPersonExist(NationalNo);
+            return clsPersonData.IsExist(NationalNo);
         }
 
 

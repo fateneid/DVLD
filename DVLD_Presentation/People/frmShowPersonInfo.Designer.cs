@@ -30,7 +30,7 @@
         {
             this.lblPersonDetailsCaption = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.ctrlPersonCard1 = new DVLD_Presentation.People.ctrlPersonCard();
+            this.ctrlPersonCard1 = new DVLD_Presentation.People.Controls.ctrlPerson();
             this.SuspendLayout();
             // 
             // lblPersonDetailsCaption
@@ -77,6 +77,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1196, 608);
             this.Controls.Add(this.ctrlPersonCard1);
             this.Controls.Add(this.btnClose);
@@ -95,6 +96,6 @@
         #endregion
         private System.Windows.Forms.Label lblPersonDetailsCaption;
         private System.Windows.Forms.Button btnClose;
-        private ctrlPersonCard ctrlPersonCard1;
+        private Controls.ctrlPerson ctrlPersonCard1;
     }
 }

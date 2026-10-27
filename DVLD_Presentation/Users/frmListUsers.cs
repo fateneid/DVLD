@@ -1,14 +1,6 @@
 ﻿using DVLD_Business;
-using DVLD_Presentation.Global_Classes;
-using DVLD_Presentation.People;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD_Presentation.Users
@@ -16,12 +8,19 @@ namespace DVLD_Presentation.Users
     public partial class frmListUsers : Form
     {
 
-        private DataView _DataSource = clsUser.GetAllUsers().DefaultView;
+        private DataView _DataSource = clsUser.GetAll().DefaultView;
+        private int _UserID
+        {
+            get
+            {
+                return dgvAllUsers.CurrentRow == null ? -1 :
+                    (int)dgvAllUsers.CurrentRow.Cells["UserID"].Value;
+            }
+        }
 
         public frmListUsers()
         {
             InitializeComponent();
-
         }
 
         private void frmListUsers_Load(object sender, EventArgs e)
@@ -32,8 +31,8 @@ namespace DVLD_Presentation.Users
             cbFilterBy.SelectedIndex = 0;
         }
 
-        private void _SetupGridColumns() 
-        { 
+        private void _SetupGridColumns()
+        {
 
             dgvAllUsers.Columns["UserID"].HeaderText = "User ID";
             dgvAllUsers.Columns["UserID"].DisplayIndex = 0;
@@ -64,7 +63,7 @@ namespace DVLD_Presentation.Users
         }
         private void _ReloadData()
         {
-            _DataSource = clsUser.GetAllUsers().DefaultView;
+            _DataSource = clsUser.GetAll().DefaultView;
             dgvAllUsers.DataSource = _DataSource;
             lblRecordsCount.Text = _DataSource.Count.ToString();
         }
@@ -80,7 +79,7 @@ namespace DVLD_Presentation.Users
         {
             if (MessageBox.Show("Are you sure you want to delete User [" + UserID + "]?", "Confirm Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                if (!clsUser.DeleteUser(UserID))
+                if (!clsUser.Delete(UserID))
                 {
                     MessageBox.Show("User deletion failed because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -174,11 +173,11 @@ namespace DVLD_Presentation.Users
 
         private void dgvAllUsers_DoubleClick(object sender, EventArgs e)
         {
-            _ShowUser((int)dgvAllUsers.CurrentRow.Cells["UserID"].Value);
+            _ShowUser(_UserID);
         }
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ShowUser((int)dgvAllUsers.CurrentRow.Cells["UserID"].Value);
+            _ShowUser(_UserID);
         }
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -191,7 +190,7 @@ namespace DVLD_Presentation.Users
         }
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddUpdateUser frm = new frmAddUpdateUser((int)dgvAllUsers.CurrentRow.Cells["UserID"].Value);
+            frmAddUpdateUser frm = new frmAddUpdateUser(_UserID);
 
             if (frm.ShowDialog() == DialogResult.OK)
             {
@@ -200,11 +199,11 @@ namespace DVLD_Presentation.Users
         }
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _DeleteUser((int)dgvAllUsers.CurrentRow.Cells["UserID"].Value);
+            _DeleteUser(_UserID);
         }
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChangePassword frm = new frmChangePassword((int)dgvAllUsers.CurrentRow.Cells["UserID"].Value);
+            frmChangePassword frm = new frmChangePassword(_UserID);
             frm.ShowDialog();
         }
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)

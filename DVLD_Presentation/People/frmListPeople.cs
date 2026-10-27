@@ -1,21 +1,25 @@
 ﻿using DVLD_Business;
-using DVLD_Presentation.Global_Classes;
-using DVLD_Presentation.People;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace DVLD_Presentation.People
 {
     public partial class frmListPeople : Form
     {
-        private DataView _DataSource = clsPerson.GetAllPeople().DefaultView;
+        private DataView _DataSource = clsPerson.GetAll().DefaultView;
+        private int _PersonID
+        {
+            get
+            {
+                return dgvAllPeople.CurrentRow == null ? -1 :
+                    (int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value;
+            }
+        }
 
         public frmListPeople()
         {
             InitializeComponent();
-
         }
 
         private void frmListPeople_Load(object sender, EventArgs e)
@@ -65,7 +69,7 @@ namespace DVLD_Presentation.People
         }
         private void _ReloadData()
         {
-            _DataSource = clsPerson.GetAllPeople().DefaultView;
+            _DataSource = clsPerson.GetAll().DefaultView;
             dgvAllPeople.DataSource = _DataSource;
             lblRecordsCount.Text = _DataSource.Count.ToString();
         }
@@ -81,7 +85,7 @@ namespace DVLD_Presentation.People
         {
             if (MessageBox.Show("Are you sure you want to delete Person [" + PersonID + "]?", "Confirm Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                if (!clsPerson.DeletePerson(PersonID))
+                if (!clsPerson.Delete(PersonID))
                 {
                     MessageBox.Show("Person deletion failed because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -190,11 +194,11 @@ namespace DVLD_Presentation.People
 
         private void dgvAllPeople_DoubleClick(object sender, EventArgs e)
         {
-            _ShowPerson((int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value);
+            _ShowPerson(_PersonID);
         }
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ShowPerson((int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value);
+            _ShowPerson(_PersonID);
         }
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -207,7 +211,7 @@ namespace DVLD_Presentation.People
         }
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddUpdatePerson frm = new frmAddUpdatePerson((int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value);
+            frmAddUpdatePerson frm = new frmAddUpdatePerson(_PersonID);
 
             if (frm.ShowDialog() == DialogResult.OK)
             {
@@ -216,7 +220,7 @@ namespace DVLD_Presentation.People
         }
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _DeletePerson((int)dgvAllPeople.CurrentRow.Cells["PersonID"].Value);
+            _DeletePerson(_PersonID);
         }
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
         {

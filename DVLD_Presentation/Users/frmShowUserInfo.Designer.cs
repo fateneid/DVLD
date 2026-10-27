@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnClose = new System.Windows.Forms.Button();
-            this.ctrlUserCard1 = new DVLD_Presentation.Users.ctrlUserCard();
+            this.ctrlUserCard1 = new DVLD_Presentation.Users.ctrlUser();
             this.SuspendLayout();
             // 
             // btnClose
@@ -67,6 +67,7 @@
             this.ClientSize = new System.Drawing.Size(1182, 676);
             this.Controls.Add(this.ctrlUserCard1);
             this.Controls.Add(this.btnClose);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowUserInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User Details";
@@ -76,6 +77,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnClose;
-        private ctrlUserCard ctrlUserCard1;
+        private ctrlUser ctrlUserCard1;
     }
 }

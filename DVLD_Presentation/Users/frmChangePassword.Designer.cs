@@ -41,7 +41,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctrlUserCard1 = new DVLD_Presentation.Users.ctrlUserCard();
+            this.ctrlUserCard1 = new DVLD_Presentation.Users.ctrlUser();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -227,7 +227,7 @@
 
         #endregion
 
-        private ctrlUserCard ctrlUserCard1;
+        private ctrlUser ctrlUserCard1;
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.TextBox txtNewPassword;
         private System.Windows.Forms.PictureBox pictureBox3;

@@ -33,7 +33,7 @@
             this.tcAddUpdateUser = new System.Windows.Forms.TabControl();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
-            this.ctrlPersonCardWithFilter1 = new DVLD_Presentation.People.ctrlPersonCardWithFilter();
+            this.ctrlPersonCardWithFilter1 = new DVLD_Presentation.People.Controls.ctrlPersonWithFilter();
             this.tpLoginInfo = new System.Windows.Forms.TabPage();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -115,6 +115,7 @@
             // 
             // ctrlPersonCardWithFilter1
             // 
+            this.ctrlPersonCardWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ctrlPersonCardWithFilter1.BackColor = System.Drawing.Color.White;
             this.ctrlPersonCardWithFilter1.FilterEnabled = true;
             this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(7, 19);
@@ -340,6 +341,7 @@
             this.Name = "frmAddUpdateUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit User";
+            this.Activated += new System.EventHandler(this.frmAddUpdateUser_Activated);
             this.Load += new System.EventHandler(this.frmAddUpdateUser_Load);
             this.tcAddUpdateUser.ResumeLayout(false);
             this.tpPersonalInfo.ResumeLayout(false);
@@ -363,7 +365,7 @@
         private System.Windows.Forms.TabPage tpLoginInfo;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
-        private People.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
+        private People.Controls.ctrlPersonWithFilter ctrlPersonCardWithFilter1;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lblConfirmPasswordCaption;

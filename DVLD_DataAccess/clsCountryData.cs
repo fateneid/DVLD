@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
     public class clsCountryData
     {
 
-        public static bool GetCountryByID(int CountryID, ref string CountryName)
+        public static bool GetByID(int CountryID, ref string CountryName)
         {
 
             bool isFound = false;
@@ -49,7 +49,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool GetCountryByName(ref int CountryID, string CountryName)
+        public static bool GetByName(ref int CountryID, string CountryName)
         {
 
             bool isFound = false;
@@ -91,7 +91,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static DataTable GetAllCountries()
+        public static DataTable GetAll()
         {
             DataTable dt = new DataTable();
 
@@ -104,16 +104,13 @@ namespace DVLD_DataAccess
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
+                dt.Load(reader);
 
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {

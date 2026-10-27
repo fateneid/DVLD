@@ -286,7 +286,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1027, 794);
-            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblRecordsCount);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnClose);
@@ -297,6 +296,7 @@
             this.Controls.Add(this.dgvAllUsers);
             this.Controls.Add(this.pbfrmListUsers);
             this.Controls.Add(this.cbSearchIsActive);
+            this.Controls.Add(this.txtSearch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
     public class clsApplicationTypeData
     {
 
-        public static bool GetApplicationTypeByID(int ApplicationTypeID, ref string ApplicationTypeTitle, ref decimal ApplicationFees)
+        public static bool GetByID(int ApplicationTypeID, ref string ApplicationTypeTitle, ref decimal ApplicationFees)
         {
 
             bool isFound = false;
@@ -51,7 +51,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static int AddNewApplicationType(string ApplicationTypeTitle, decimal ApplicationFees)
+        public static int AddNew(string ApplicationTypeTitle, decimal ApplicationFees)
         {
 
             int ApplicationTypeID = -1;
@@ -75,7 +75,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {
@@ -86,7 +86,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool UpdateApplicationType(int ApplicationTypeID, string ApplicationTypeTitle, decimal ApplicationFees)
+        public static bool Update(int ApplicationTypeID, string ApplicationTypeTitle, decimal ApplicationFees)
         {
 
             int rowsAffected = 0;
@@ -109,7 +109,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
             finally
@@ -121,7 +120,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static DataTable GetAllApplicationTypes()
+        public static DataTable GetAll()
         {
             DataTable dt = new DataTable();
 
@@ -137,16 +136,13 @@ namespace DVLD_DataAccess
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
+                dt.Load(reader);
 
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {

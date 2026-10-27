@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
     public class clsPersonData
     {
 
-        public static bool GetPersonByID(int PersonID, ref int NationalityCountryID, ref string NationalNo, 
+        public static bool GetByID(int PersonID, ref int NationalityCountryID, ref string NationalNo, 
             ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName,
             ref short Gender, ref string Address, ref string Email, ref string Phone,
             ref string ImagePath, ref DateTime DateOfBirth)
@@ -64,7 +64,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool GetPersonByNationalNo(ref int PersonID, ref int NationalityCountryID, string NationalNo,
+        public static bool GetByNationalNo(ref int PersonID, ref int NationalityCountryID, string NationalNo,
             ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName,
             ref short Gender, ref string Address, ref string Email, ref string Phone,
             ref string ImagePath, ref DateTime DateOfBirth)
@@ -121,7 +121,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static int AddNewPerson(int NationalityCountryID, string NationalNo,
+        public static int AddNew(int NationalityCountryID, string NationalNo,
             string FirstName, string SecondName, string ThirdName, string LastName,
             short Gender, string Address, string Email, string Phone,
             string ImagePath, DateTime DateOfBirth)
@@ -174,7 +174,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {
@@ -185,7 +185,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool UpdatePerson(int PersonID, int NationalityCountryID, string NationalNo,
+        public static bool Update(int PersonID, int NationalityCountryID, string NationalNo,
             string FirstName, string SecondName, string ThirdName, string LastName,
             short Gender, string Address, string Email, string Phone,
             string ImagePath, DateTime DateOfBirth)
@@ -245,7 +245,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
             finally
@@ -257,7 +256,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool DeletePerson(int PersonID)
+        public static bool Delete(int PersonID)
         {
             int rowsAffected = 0;
 
@@ -274,7 +273,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
             finally
@@ -285,7 +283,7 @@ namespace DVLD_DataAccess
             return (rowsAffected > 0);
         }
 
-        public static DataTable GetAllPeople()
+        public static DataTable GetAll()
         {
             DataTable dt = new DataTable();
 
@@ -311,16 +309,13 @@ namespace DVLD_DataAccess
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
+                dt.Load(reader);
 
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {
@@ -331,7 +326,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool IsPersonExist(int PersonID)
+        public static bool IsExist(int PersonID)
         {
             bool isFound = false;
 
@@ -349,7 +344,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -360,7 +354,7 @@ namespace DVLD_DataAccess
             return isFound;
 
         }
-        public static bool IsPersonExist(string NationalNo)
+        public static bool IsExist(string NationalNo)
         {
             bool isFound = false;
 
@@ -378,7 +372,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally

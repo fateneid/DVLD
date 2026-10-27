@@ -1,14 +1,7 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace DVLD_Presentation.Users
 {
@@ -46,6 +39,10 @@ namespace DVLD_Presentation.Users
                     break;
             }
         }
+        private void frmAddUpdateUser_Activated(object sender, EventArgs e)
+        {
+            ctrlPersonCardWithFilter1.FilterFocus();
+        }
 
         private void _AddNew()
         {
@@ -79,7 +76,7 @@ namespace DVLD_Presentation.Users
                 return;
             }
 
-            ctrlPersonCardWithFilter1.LoadPersonInfo(_User.PersonID);
+            ctrlPersonCardWithFilter1.LoadInfo(_User.PersonID);
             lblUserID.Text = _User.UserID.ToString();
             txtUserName.Text = _User.UserName;
             txtPassword.Text = _User.Password;
@@ -97,14 +94,13 @@ namespace DVLD_Presentation.Users
             btnNext.Enabled = PersonID != -1;
             if(PersonID == -1)
             {
-                MessageBox.Show("Please Select an exist person", "Person not exist", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ctrlPersonCardWithFilter1.FilterFocus();
             }
         }
 
         private void tcAddUpdateUser_Selecting(object sender, TabControlCancelEventArgs e)
         {
-            if (e.TabPage == tpLoginInfo && !btnNext.Enabled)
+            if (e.TabPage == tpLoginInfo && ctrlPersonCardWithFilter1.PersonID == -1)
             {
                 e.Cancel = true;
             }
@@ -126,7 +122,7 @@ namespace DVLD_Presentation.Users
         {
             if (!_ValidateRequired(txtUserName, e)) return;
 
-            if (txtUserName.Text.Trim() != _User.UserName && clsUser.IsUserExist(txtUserName.Text.Trim()))
+            if (txtUserName.Text.Trim() != _User.UserName && clsUser.IsExist(txtUserName.Text.Trim()))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtUserName, "Username is used by another user");
@@ -151,7 +147,7 @@ namespace DVLD_Presentation.Users
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (clsUser.IsUserExistByPersonID(ctrlPersonCardWithFilter1.PersonID)
+            if (clsUser.IsExistByPersonID(ctrlPersonCardWithFilter1.PersonID)
                 && _Mode == enMode.AddNew)
             {
                 MessageBox.Show("Selected Person already is a user, choose another one.", "Select another Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -195,7 +191,6 @@ namespace DVLD_Presentation.Users
         {
             this.Close();
         }
-
 
     }
 }

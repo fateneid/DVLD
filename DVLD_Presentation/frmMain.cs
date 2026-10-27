@@ -1,16 +1,13 @@
 ﻿using DVLD_Presentation.Applications.Application_Types;
-using DVLD_Presentation.Applications.Test_Types;
+using DVLD_Presentation.Applications.International_Driving_License;
+using DVLD_Presentation.Applications.Local_Driving_License;
+using DVLD_Presentation.Drivers;
 using DVLD_Presentation.Global_Classes;
+using DVLD_Presentation.Licenses;
 using DVLD_Presentation.People;
+using DVLD_Presentation.Tests.Test_Types;
 using DVLD_Presentation.Users;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD_Presentation
@@ -35,11 +32,13 @@ namespace DVLD_Presentation
         // New Driving License
         private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmAddUpdateLocalLicenseApplication frm = new frmAddUpdateLocalLicenseApplication();
+            frm.ShowDialog();
         }
         private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmIssueInternationalLicense frm = new frmIssueInternationalLicense();
+            frm.ShowDialog();
         }
         //
         private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -56,16 +55,19 @@ namespace DVLD_Presentation
         }
         private void retakeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListLocalLicenseApplications frm = new frmListLocalLicenseApplications();
+            frm.ShowDialog();
         }
         // Manage Applications
         private void localDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListLocalLicenseApplications frm = new frmListLocalLicenseApplications();
+            frm.ShowDialog();
         }
         private void internationalDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListInternationalLicenseApplications frm = new frmListInternationalLicenseApplications();
+            frm.ShowDialog();
         }
         // Detain Licenses
         private void ManageDetainedLicensesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -110,7 +112,8 @@ namespace DVLD_Presentation
         // Drivers
         private void driversToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListDrivers frm = new frmListDrivers();
+            frm.ShowDialog();
         }
 
         // Account Settings

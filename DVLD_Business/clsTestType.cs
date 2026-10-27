@@ -1,7 +1,6 @@
 ﻿using DVLD_DataAccess;
 using System;
 using System.Data;
-using static DVLD_Business.clsTestType;
 
 namespace DVLD_Business
 {
@@ -41,24 +40,24 @@ namespace DVLD_Business
         {
             string TestTypeTitle = "", TestTypeDescription = "";
             decimal TestTypeFees = 0;
-            if (clsTestTypeData.GetTestTypeByID((int)TestTypeID, ref TestTypeTitle, ref TestTypeDescription, ref TestTypeFees))
+            if (clsTestTypeData.GetByID((int)TestTypeID, ref TestTypeTitle, ref TestTypeDescription, ref TestTypeFees))
                 return new clsTestType(TestTypeID, TestTypeTitle, TestTypeDescription, TestTypeFees);
             else
                 return null;
         }
 
-        private bool _AddNewTestType()
+        private bool _AddNew()
         {
-            int NewID = clsTestTypeData.AddNewTestType(this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
+            int NewID = clsTestTypeData.AddNew(this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
 
             if (NewID == -1) return false;
 
             this.TestTypeID = (enTestType)NewID;
             return true;
         }
-        private bool _UpdateTestType()
+        private bool _Update()
         {
-            return clsTestTypeData.UpdateTestType((int)this.TestTypeID, this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
+            return clsTestTypeData.Update((int)this.TestTypeID, this.TestTypeTitle, this.TestTypeDescription, this.TestTypeFees);
         }
 
         public bool Save()
@@ -66,7 +65,7 @@ namespace DVLD_Business
             switch (Mode)
             {
                 case enMode.AddNew:
-                    if (_AddNewTestType())
+                    if (_AddNew())
                     {
                         Mode = enMode.Update;
                         return true;
@@ -76,15 +75,15 @@ namespace DVLD_Business
                         return false;
                     }
                 case enMode.Update:
-                    return _UpdateTestType();
+                    return _Update();
             }
 
             return false;
         }
 
-        public static DataTable GetAllTestTypes()
+        public static DataTable GetAll()
         {
-            return clsTestTypeData.GetAllTestTypes();
+            return clsTestTypeData.GetAll();
         }
 
 

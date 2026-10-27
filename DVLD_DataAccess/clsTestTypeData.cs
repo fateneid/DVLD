@@ -7,7 +7,7 @@ namespace DVLD_DataAccess
     public class clsTestTypeData
     {
 
-        public static bool GetTestTypeByID(int TestTypeID, ref string TestTypeTitle, ref string TestTypeDescription, ref decimal TestTypeFees)
+        public static bool GetByID(int TestTypeID, ref string TestTypeTitle, ref string TestTypeDescription, ref decimal TestTypeFees)
         {
 
             bool isFound = false;
@@ -52,7 +52,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static int AddNewTestType(string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
+        public static int AddNew(string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
         {
 
             int TestTypeID = -1;
@@ -82,7 +82,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {
@@ -93,7 +93,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool UpdateTestType(int TestTypeID, string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
+        public static bool Update(int TestTypeID, string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
         {
 
             int rowsAffected = 0;
@@ -123,7 +123,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
             finally
@@ -135,7 +134,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static DataTable GetAllTestTypes()
+        public static DataTable GetAll()
         {
             DataTable dt = new DataTable();
 
@@ -151,16 +150,13 @@ namespace DVLD_DataAccess
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
+                dt.Load(reader);
 
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {

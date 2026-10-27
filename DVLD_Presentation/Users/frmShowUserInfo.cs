@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD_Presentation.Users
@@ -16,7 +9,7 @@ namespace DVLD_Presentation.Users
         public frmShowUserInfo(int UserID)
         {
             InitializeComponent();
-            ctrlUserCard1.LoadUserInfo(UserID);
+            ctrlUserCard1.LoadInfo(UserID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

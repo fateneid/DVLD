@@ -6,7 +6,6 @@ namespace DVLD_Business
 {
     public class clsUser
     {
-
         public enum enMode { AddNew = 0, Update  = 1};
         public enMode Mode = enMode.AddNew;
 
@@ -46,7 +45,7 @@ namespace DVLD_Business
             string UserName = "", Password = "";
             bool IsActive = true;
 
-            if (clsUserData.GetUserByID(UserID, ref PersonID, ref UserName, ref Password, ref IsActive))
+            if (clsUserData.GetByID(UserID, ref PersonID, ref UserName, ref Password, ref IsActive))
                 return new clsUser(UserID, PersonID, UserName, Password, IsActive);
             else 
                 return null;
@@ -56,21 +55,21 @@ namespace DVLD_Business
             int UserID = -1, PersonID = -1;
             bool IsActive = true;
 
-            if (clsUserData.GetUserByUsernameAndPassword(ref UserID, ref PersonID, UserName, Password, ref IsActive))
+            if (clsUserData.GetByUsernameAndPassword(ref UserID, ref PersonID, UserName, Password, ref IsActive))
                 return new clsUser(UserID, PersonID, UserName, Password, IsActive);
             else
                 return null;
         }
 
-        private bool _AddNewUser()
+        private bool _AddNew()
         {
-            this.UserID = clsUserData.AddNewUser(this.PersonID, this.UserName, this.Password, this.IsActive);
+            this.UserID = clsUserData.AddNew(this.PersonID, this.UserName, this.Password, this.IsActive);
 
             return (this.UserID != -1);
         }
-        private bool _UpdateUser()
+        private bool _Update()
         {
-            return clsUserData.UpdateUser(this.UserID, this.PersonID, this.UserName, this.Password, this.IsActive);
+            return clsUserData.Update(this.UserID, this.PersonID, this.UserName, this.Password, this.IsActive);
         }
         public bool ChangePassword(string NewPassword)
         {
@@ -85,7 +84,7 @@ namespace DVLD_Business
             switch (Mode)
             {
                 case enMode.AddNew:
-                    if(_AddNewUser())
+                    if(_AddNew())
                     {
                         Mode = enMode.Update;
                         return true;
@@ -95,32 +94,32 @@ namespace DVLD_Business
                         return false;
                     }
                 case enMode.Update:
-                     return _UpdateUser();             
+                     return _Update();             
             }
 
             return false;
         }
-        public static bool DeleteUser(int UserID)
+        public static bool Delete(int UserID)
         {
-            return clsUserData.DeleteUser(UserID);
+            return clsUserData.Delete(UserID);
         }
 
-        public static DataTable GetAllUsers()
+        public static DataTable GetAll()
         {
-            return clsUserData.GetAllUsers();
+            return clsUserData.GetAll();
         }
 
-        public static bool IsUserExist(int UserID)
+        public static bool IsExist(int UserID)
         {
-            return clsUserData.IsUserExist(UserID);
+            return clsUserData.IsExist(UserID);
         }
-        public static bool IsUserExist(string UserName)
+        public static bool IsExist(string UserName)
         {
-            return clsUserData.IsUserExist(UserName);
+            return clsUserData.IsExist(UserName);
         }
-        public static bool IsUserExistByPersonID(int PersonID)
+        public static bool IsExistByPersonID(int PersonID)
         {
-            return clsUserData.IsUserExistByPersonID(PersonID);
+            return clsUserData.IsExistByPersonID(PersonID);
         }
 
     }

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace DVLD_DataAccess
 {
     public class clsUserData
     {
 
-        public static bool GetUserByID(int UserID, ref int PersonID, ref string UserName, 
+        public static bool GetByID(int UserID, ref int PersonID, ref string UserName, 
             ref string Password, ref bool IsActive)
         {
 
@@ -54,7 +53,7 @@ namespace DVLD_DataAccess
             return isFound;
 
         }
-        public static bool GetUserByUsernameAndPassword(ref int UserID, ref int PersonID, string UserName,
+        public static bool GetByUsernameAndPassword(ref int UserID, ref int PersonID, string UserName,
             string Password, ref bool IsActive)
         {
 
@@ -101,7 +100,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static int AddNewUser(int PersonID, string UserName, string Password, bool IsActive)
+        public static int AddNew(int PersonID, string UserName, string Password, bool IsActive)
         {
 
             int UserID = -1;
@@ -127,7 +126,7 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {
@@ -138,7 +137,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool UpdateUser(int UserID, int PersonID, string UserName, string Password, bool IsActive)
+        public static bool Update(int UserID, int PersonID, string UserName, string Password, bool IsActive)
         {
 
             int rowsAffected = 0;
@@ -165,7 +164,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 //MessageBox.Show("Error: " + ex.Message);
                 return false;
             }
@@ -198,9 +196,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
-                //MessageBox.Show("Error: " + ex.Message);
-
                 return false;
             }
             finally
@@ -212,7 +207,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool DeleteUser(int UserID)
+        public static bool Delete(int UserID)
         {
             int rowsAffected = 0;
 
@@ -229,7 +224,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
             finally
@@ -240,7 +234,7 @@ namespace DVLD_DataAccess
             return (rowsAffected > 0);
         }
 
-        public static DataTable GetAllUsers()
+        public static DataTable GetAll()
         {
             DataTable dt = new DataTable();
 
@@ -256,16 +250,13 @@ namespace DVLD_DataAccess
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
+                dt.Load(reader);
 
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+
             }
             finally
             {
@@ -276,7 +267,7 @@ namespace DVLD_DataAccess
 
         }
 
-        public static bool IsUserExist(int UserID)
+        public static bool IsExist(int UserID)
         {
             bool isFound = false;
 
@@ -294,7 +285,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -305,7 +295,7 @@ namespace DVLD_DataAccess
             return isFound;
 
         }
-        public static bool IsUserExist(string UserName)
+        public static bool IsExist(string UserName)
         {
             bool isFound = false;
 
@@ -323,7 +313,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -334,7 +323,7 @@ namespace DVLD_DataAccess
             return isFound;
 
         }
-        public static bool IsUserExistByPersonID(int PersonID)
+        public static bool IsExistByPersonID(int PersonID)
         {
             bool isFound = false;
 
@@ -352,7 +341,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally

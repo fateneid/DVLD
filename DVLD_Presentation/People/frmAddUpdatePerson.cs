@@ -1,15 +1,8 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Contracts;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 using DVLD_Presentation.Global_Classes;
 using System.IO;
 
@@ -119,7 +112,7 @@ namespace DVLD_Presentation.People
 
         private void _FillCountries()
         {
-            DataTable dt = clsCountry.GetAllCountries();
+            DataTable dt = clsCountry.GetAll();
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -211,7 +204,7 @@ namespace DVLD_Presentation.People
         {
             if (!_ValidateRequired(txtNationalNo, e)) return;
 
-            if (txtNationalNo.Text.Trim() != _Person.NationalNo && clsPerson.IsPersonExist(txtNationalNo.Text.Trim()))
+            if (txtNationalNo.Text.Trim() != _Person.NationalNo && clsPerson.IsExist(txtNationalNo.Text.Trim()))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtNationalNo, "National Number is used for another person!");
