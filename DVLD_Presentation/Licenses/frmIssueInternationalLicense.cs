@@ -8,40 +8,40 @@ namespace DVLD_Presentation.Licenses
     public partial class frmIssueInternationalLicense : Form
     {
         private int _InternationalLicenseID;
-        private clsInternationalLicense _InternationalLicense;
 
         public frmIssueInternationalLicense()
         {
             InitializeComponent();
-
-            ctrlDriverLocalLicenseWithFilter1.FilterFocus();
-            ctrlDriverLocalLicenseWithFilter1.FilterEnabled = true;
-        }
-        public frmIssueInternationalLicense(int LocalLicenseID)
-        {
-            InitializeComponent();
-
-            ctrlDriverLocalLicenseWithFilter1.LoadInfo(LocalLicenseID);
-            ctrlDriverLocalLicenseWithFilter1.FilterEnabled = false;
         }
 
         private void frmIssueInternationalLicense_Load(object sender, EventArgs e)
         {
+            ctrlDriverLocalLicenseWithFilter1.FilterEnabled = true;
+            llShowLicenseHistory.Enabled = false;
+            llShowLicenseInfo.Enabled = false;
+            btnIssueInternationalLicense.Enabled = false;
+
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
             lblIssueDate.Text = DateTime.Now.ToShortDateString();
             lblFees.Text = clsApplicationType.Find((int)clsApplication.enApplicationType.NewInternationalLicense).ApplicationFees.ToString();
             lblExpirationDate.Text = DateTime.Now.AddYears(1).ToShortDateString();
             lblCreatedBy.Text = clsGlobal.CurrentUser.UserName;
         }
-         
+        private void frmIssueInternationalLicense_Activated(object sender, EventArgs e)
+        {
+            ctrlDriverLocalLicenseWithFilter1.FilterFocus();
+        }
+
         private void ctrlDriverLocalLicenseWithFilter1_OnLicenseSelected(int LicenseID)
         {
+            _InternationalLicenseID = -1;
             llShowLicenseHistory.Enabled = LicenseID != -1;
             llShowLicenseInfo.Enabled = false;
             btnIssueInternationalLicense.Enabled = false;
 
             if (LicenseID == -1)
             {
+                lblLocalLicenseID.Text = "[????]";
                 ctrlDriverLocalLicenseWithFilter1.FilterFocus();
                 return;
             }
@@ -79,7 +79,7 @@ namespace DVLD_Presentation.Licenses
         private void llShowLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmListPersonLicenseHistory frm =
-                new frmListPersonLicenseHistory(ctrlDriverLocalLicenseWithFilter1.SelectedLicense.Driver.PersonID);
+                new frmListPersonLicenseHistory(ctrlDriverLocalLicenseWithFilter1.SelectedLicense?.Driver?.PersonID?? -1);
             frm.ShowDialog();
         }
 
@@ -90,13 +90,13 @@ namespace DVLD_Presentation.Licenses
                 return;
             }
 
-            _InternationalLicense = clsInternationalLicense.IssueInternationalLicense(
+            clsInternationalLicense InternationalLicense = clsInternationalLicense.IssueInternationalLicense(
                 ctrlDriverLocalLicenseWithFilter1.LicenseID, clsGlobal.CurrentUser.UserID);
-            if (_InternationalLicense != null )
+            if (InternationalLicense != null )
             {
-                _InternationalLicenseID = _InternationalLicense.InternationalLicenseID;
+                _InternationalLicenseID = InternationalLicense.InternationalLicenseID;
 
-                lblILApplicationID.Text = _InternationalLicense.ApplicationID.ToString();
+                lblILApplicationID.Text = InternationalLicense.ApplicationID.ToString();
                 lblILicense.Text = _InternationalLicenseID.ToString();
 
                 llShowLicenseHistory.Enabled = true;
@@ -106,9 +106,6 @@ namespace DVLD_Presentation.Licenses
 
                 MessageBox.Show("International License Issued Successfully with ID = " + _InternationalLicenseID,
                      "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
             else
             {

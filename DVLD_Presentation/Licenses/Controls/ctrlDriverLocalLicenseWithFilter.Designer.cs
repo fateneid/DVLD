@@ -45,9 +45,9 @@
             this.gbFilter.Controls.Add(this.txtFindByValue);
             this.gbFilter.Controls.Add(this.lblFindByLicenseIDCaption);
             this.gbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFilter.Location = new System.Drawing.Point(10, 4);
+            this.gbFilter.Location = new System.Drawing.Point(10, 2);
             this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(1150, 105);
+            this.gbFilter.Size = new System.Drawing.Size(1150, 100);
             this.gbFilter.TabIndex = 2;
             this.gbFilter.TabStop = false;
             this.gbFilter.Text = "Filter";
@@ -94,20 +94,21 @@
             // ctrlDriverLocalLicense1
             // 
             this.ctrlDriverLocalLicense1.BackColor = System.Drawing.Color.White;
-            this.ctrlDriverLocalLicense1.Location = new System.Drawing.Point(5, 110);
+            this.ctrlDriverLocalLicense1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlDriverLocalLicense1.Location = new System.Drawing.Point(5, 101);
             this.ctrlDriverLocalLicense1.Name = "ctrlDriverLocalLicense1";
-            this.ctrlDriverLocalLicense1.Size = new System.Drawing.Size(1160, 510);
-            this.ctrlDriverLocalLicense1.TabIndex = 0;
+            this.ctrlDriverLocalLicense1.Size = new System.Drawing.Size(1160, 455);
+            this.ctrlDriverLocalLicense1.TabIndex = 3;
             // 
             // ctrlDriverLocalLicenseWithFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.gbFilter);
             this.Controls.Add(this.ctrlDriverLocalLicense1);
+            this.Controls.Add(this.gbFilter);
             this.Name = "ctrlDriverLocalLicenseWithFilter";
-            this.Size = new System.Drawing.Size(1170, 625);
+            this.Size = new System.Drawing.Size(1170, 560);
             this.Load += new System.EventHandler(this.ctrlDriverLocalLicenseWithFilter_Load);
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();
@@ -117,12 +118,11 @@
         }
 
         #endregion
-
-        private ctrlDriverLocalLicense ctrlDriverLocalLicense1;
         private System.Windows.Forms.GroupBox gbFilter;
         private System.Windows.Forms.Button btnFindLicense;
         private System.Windows.Forms.TextBox txtFindByValue;
         private System.Windows.Forms.Label lblFindByLicenseIDCaption;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private ctrlDriverLocalLicense ctrlDriverLocalLicense1;
     }
 }

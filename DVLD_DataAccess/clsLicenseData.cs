@@ -290,6 +290,36 @@ namespace DVLD_DataAccess
 
         }
 
+        public static bool Deactivate(int LicenseID)
+        {
+            int rowsAffected = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Licenses  
+                             SET IsActive = 0, 
+                                 WHERE LicenseID = @LicenseID;";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
+
         public static int GetActiveByPersonIDAndClassID(int PersonID, int LicenseClassID) 
         {
             int LicenseID = -1;

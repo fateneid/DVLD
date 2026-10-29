@@ -49,7 +49,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pbGender = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.lblExpirationDateCaption = new System.Windows.Forms.Label();
             this.lblLocalLicenseIDCaption = new System.Windows.Forms.Label();
             this.lblILicenseCaption = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -137,7 +137,7 @@
             this.gbApplicationInfo.Controls.Add(this.pictureBox5);
             this.gbApplicationInfo.Controls.Add(this.pictureBox3);
             this.gbApplicationInfo.Controls.Add(this.pictureBox2);
-            this.gbApplicationInfo.Controls.Add(this.pbGender);
+            this.gbApplicationInfo.Controls.Add(this.pictureBox9);
             this.gbApplicationInfo.Controls.Add(this.lblExpirationDateCaption);
             this.gbApplicationInfo.Controls.Add(this.lblLocalLicenseIDCaption);
             this.gbApplicationInfo.Controls.Add(this.lblILicenseCaption);
@@ -254,7 +254,7 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Image = global::DVLD_Presentation.Properties.Resources.Calendar_32;
+            this.pictureBox8.Image = global::DVLD_Presentation.Properties.Resources.LocalDriving_License;
             this.pictureBox8.Location = new System.Drawing.Point(783, 88);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox8.Name = "pictureBox8";
@@ -287,7 +287,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::DVLD_Presentation.Properties.Resources.User_32__2;
+            this.pictureBox6.Image = global::DVLD_Presentation.Properties.Resources.Calendar_32;
             this.pictureBox6.Location = new System.Drawing.Point(783, 135);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox6.Name = "pictureBox6";
@@ -309,7 +309,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::DVLD_Presentation.Properties.Resources.money_32;
+            this.pictureBox5.Image = global::DVLD_Presentation.Properties.Resources.Calendar_32;
             this.pictureBox5.Location = new System.Drawing.Point(220, 135);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox5.Name = "pictureBox5";
@@ -320,7 +320,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::DVLD_Presentation.Properties.Resources.Calendar_32;
+            this.pictureBox3.Image = global::DVLD_Presentation.Properties.Resources.International_32;
             this.pictureBox3.Location = new System.Drawing.Point(783, 41);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox3.Name = "pictureBox3";
@@ -331,7 +331,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::DVLD_Presentation.Properties.Resources.Number_32;
+            this.pictureBox2.Image = global::DVLD_Presentation.Properties.Resources.Calendar_32;
             this.pictureBox2.Location = new System.Drawing.Point(220, 88);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox2.Name = "pictureBox2";
@@ -340,16 +340,16 @@
             this.pictureBox2.TabIndex = 194;
             this.pictureBox2.TabStop = false;
             // 
-            // pbGender
+            // pictureBox9
             // 
-            this.pbGender.Image = global::DVLD_Presentation.Properties.Resources.ApplicationType;
-            this.pbGender.Location = new System.Drawing.Point(220, 182);
-            this.pbGender.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pbGender.Name = "pbGender";
-            this.pbGender.Size = new System.Drawing.Size(32, 31);
-            this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbGender.TabIndex = 193;
-            this.pbGender.TabStop = false;
+            this.pictureBox9.Image = global::DVLD_Presentation.Properties.Resources.money_32;
+            this.pictureBox9.Location = new System.Drawing.Point(220, 182);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(32, 31);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 193;
+            this.pictureBox9.TabStop = false;
             // 
             // lblExpirationDateCaption
             // 
@@ -449,10 +449,9 @@
             // 
             this.ctrlDriverLocalLicenseWithFilter1.BackColor = System.Drawing.Color.White;
             this.ctrlDriverLocalLicenseWithFilter1.FilterEnabled = true;
-            this.ctrlDriverLocalLicenseWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlDriverLocalLicenseWithFilter1.Location = new System.Drawing.Point(9, 55);
+            this.ctrlDriverLocalLicenseWithFilter1.Location = new System.Drawing.Point(9, 53);
             this.ctrlDriverLocalLicenseWithFilter1.Name = "ctrlDriverLocalLicenseWithFilter1";
-            this.ctrlDriverLocalLicenseWithFilter1.Size = new System.Drawing.Size(1170, 562);
+            this.ctrlDriverLocalLicenseWithFilter1.Size = new System.Drawing.Size(1170, 560);
             this.ctrlDriverLocalLicenseWithFilter1.TabIndex = 231;
             this.ctrlDriverLocalLicenseWithFilter1.OnLicenseSelected += new System.Action<int>(this.ctrlDriverLocalLicenseWithFilter1_OnLicenseSelected);
             // 
@@ -460,6 +459,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1188, 944);
@@ -474,6 +474,7 @@
             this.Name = "frmIssueInternationalLicense";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New International License Application";
+            this.Activated += new System.EventHandler(this.frmIssueInternationalLicense_Activated);
             this.Load += new System.EventHandler(this.frmIssueInternationalLicense_Load);
             this.gbApplicationInfo.ResumeLayout(false);
             this.gbApplicationInfo.PerformLayout();
@@ -484,7 +485,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -514,7 +515,7 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pbGender;
+        private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label lblExpirationDateCaption;
         private System.Windows.Forms.Label lblLocalLicenseIDCaption;
         private System.Windows.Forms.Label lblILicenseCaption;

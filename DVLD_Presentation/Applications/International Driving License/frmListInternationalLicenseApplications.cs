@@ -124,11 +124,9 @@ namespace DVLD_Presentation.Applications.International_Driving_License
         private void btnAddNewInternationalLicenseApplication_Click(object sender, EventArgs e)
         {
             frmIssueInternationalLicense frm = new frmIssueInternationalLicense();
+            frm.ShowDialog();
 
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                _ReloadData();
-            }
+            _ReloadData();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

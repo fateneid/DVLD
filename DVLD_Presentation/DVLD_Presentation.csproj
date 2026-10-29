@@ -98,6 +98,12 @@
     <Compile Include="Applications\Local Driving License\frmShowLocalLicenseApplicationInfo.Designer.cs">
       <DependentUpon>frmShowLocalLicenseApplicationInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\Renew Local License\frmRenewLocalLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Renew Local License\frmRenewLocalLicenseApplication.Designer.cs">
+      <DependentUpon>frmRenewLocalLicenseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Licenses\Controls\ctrlDriverInternationalLicense.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -281,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\Local Driving License\frmShowLocalLicenseApplicationInfo.resx">
       <DependentUpon>frmShowLocalLicenseApplicationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Renew Local License\frmRenewLocalLicenseApplication.resx">
+      <DependentUpon>frmRenewLocalLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drivers\frmListDrivers.resx">
       <DependentUpon>frmListDrivers.cs</DependentUpon>

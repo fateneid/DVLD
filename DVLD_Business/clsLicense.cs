@@ -1,6 +1,7 @@
-﻿using System;
+﻿using DVLD_DataAccess;
+using System;
 using System.Data;
-using DVLD_DataAccess;
+using static DVLD_Business.clsApplication;
 
 namespace DVLD_Business
 {
@@ -175,6 +176,49 @@ namespace DVLD_Business
                 default:
                     return "Unknown";
             }
+        }
+
+        public bool Deactivate()
+        {
+            return clsLicenseData.Deactivate(this.LicenseID);
+        }
+
+        public bool CanRenew()
+        {
+            return IsActive && ExpirationDate <= DateTime.Now.AddDays(30);
+        }
+        public clsLicense Renew(string Notes, int CreatedByUserID)
+        {
+            // Validations
+            if (!CanRenew()) return null;
+
+            // Create Application
+            clsApplication RenewApp = new clsApplication();
+            RenewApp.ApplicationTypeID = enApplicationType.RenewLicense;
+            RenewApp.ApplicantPersonID = this.Driver.PersonID;
+            RenewApp.ApplicationStatus = enApplicationStatus.Completed;
+            RenewApp.PaidFees = clsApplicationType.Find((int)enApplicationType.RenewLicense).ApplicationFees;
+            RenewApp.CreatedByUserID = CreatedByUserID;
+
+            if (!RenewApp.Save()) return null;
+
+            // Issue New License
+            clsLicense NewLicense = new clsLicense();
+            NewLicense.ApplicationID = RenewApp.ApplicationID;
+            NewLicense.DriverID = this.DriverID;
+            NewLicense.LicenseClassID = this.LicenseClassID;
+            NewLicense.ExpirationDate = NewLicense.IssueDate.AddYears(this.LicenseClass.DefaultValidityLength);
+            NewLicense.Notes = Notes;
+            NewLicense.PaidFees = clsLicenseClass.Find(this.LicenseClassID).ClassFees;
+            NewLicense.IssueReason = enIssueReason.Renew;
+            NewLicense.CreatedByUserID = CreatedByUserID;
+
+            if (!NewLicense.Save()) return null;
+
+            // Deactivate Old License
+            Deactivate();
+
+            return NewLicense;
         }
 
     }

@@ -329,7 +329,7 @@ namespace DVLD_DataAccess
             string query = @"SELECT TOP 1 InternationalLicenseID
                              FROM InternationalLicenses 
                              WHERE IssuedUsingLocalLicenseID = @IssuedUsingLocalLicenseID
-                               AND GetDate() BETWEEN IssueDate AND ExpirationDate 
+                               AND ExpirationDate >= GETDATE()
                                AND IsActive = 1
                              ORDER BY ExpirationDate DESC;";
             SqlCommand command = new SqlCommand(query, connection);
